@@ -1,1 +1,8 @@
 venv
+.env
+.DS_Store
+
+pagila
+sakila
+
+logs
