@@ -25,6 +25,8 @@ x-airflow-common:
     - ${AIRFLOW_PROJ_DIR:-.}/config:/opt/airflow/config
     - ${AIRFLOW_PROJ_DIR:-.}/plugins:/opt/airflow/plugins
     - ${AIRFLOW_PROJ_DIR:-.}/data:/opt/airflow/data
+    - ${AIRFLOW_PROJ_DIR:-.}/pagila:/opt/airflow/pagila
+    - ${AIRFLOW_PROJ_DIR:-.}/sakila:/opt/airflow/sakila
   user: "${AIRFLOW_UID:-50000}:0"
   depends_on:
     &airflow-common-depends-on
@@ -72,6 +74,7 @@ services:
       MYSQL_USER: ${MYSQLUSER}
       MYSQL_DATABASE: ${MYSQLDB}
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASS}
+    command: --log-bin-trust-function-creators=1
     volumes:
       - ./sakila/sakila-schema.sql:/docker-entrypoint-initdb.d/1-sakila-schema.sql
       - ./sakila/sakila-data.sql:/docker-entrypoint-initdb.d/2-sakila-data.sql

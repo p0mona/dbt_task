@@ -6,3 +6,4 @@ pagila
 sakila
 
 logs
+dags/__pycache__
