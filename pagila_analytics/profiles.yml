@@ -1,0 +1,12 @@
+pagila_analytics:
+  target: dev
+  outputs:
+    dev:
+      type: snowflake
+      account: "{{ env_var('DBT_ACCOUNT') }}"
+      database: "{{ env_var('DBT_DB') }}" 
+      schema: "{{ env_var('DBT_SCHEMA') }}" 
+      auth_method: username_password  
+      username: "{{ env_var('DBT_USER') }}" 
+      password_credentials: "{{ env_var('DBT_PASSWORD') }}" 
+      threads: 3
