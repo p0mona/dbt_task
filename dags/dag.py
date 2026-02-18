@@ -1,9 +1,10 @@
 from airflow import DAG
 from airflow.operators.dummy import DummyOperator
 from airflow.operators.bash import BashOperator
+from airflow.operators.python_operator import BranchPythonOperator
 from airflow.providers.postgres.hooks.postgres import PostgresHook
 from airflow.providers.mysql.hooks.mysql import MySqlHook
-from airflow.operators.python_operator import BranchPythonOperator
+from airflow.providers.airbyte.operators.airbyte import AirbyteTriggerSyncOperator
 from settings import DEFAULT_ARGS
 from dotenv import load_dotenv
 from datetime import datetime
@@ -60,6 +61,30 @@ with DAG(
         '''
     )
 
+    sync_pagila = AirbyteTriggerSyncOperator(
+        task_id='sync_pagila',
+        trigger_rule='none_failed_min_one_success',
+        airbyte_conn_id='airbyte_default',
+        connection_id='14778491-b1bd-4827-aefd-7435969c4479',
+        asynchronous=False,
+        wait_seconds=10
+    )
+
+    sync_sakila = AirbyteTriggerSyncOperator(
+        task_id='sync_sakila',
+        trigger_rule='none_failed_min_one_success',
+        airbyte_conn_id='airbyte_default',
+        connection_id='24955cba-d603-4abb-bf01-fc418bc608ae',
+        asynchronous=False,
+        wait_seconds=10
+    )
+
     exist = DummyOperator(task_id="exist")
 
-    check_task >> [exist, create_dbs]
+    check_task >> exist 
+    exist >> sync_pagila
+    exist >> sync_sakila
+
+    check_task >> create_dbs
+    create_dbs >> sync_pagila
+    create_dbs >> sync_sakila
