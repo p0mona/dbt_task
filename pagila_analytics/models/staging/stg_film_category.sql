@@ -2,7 +2,7 @@
 
 with source as (
     select *
-    from pagila.film_category
+    from {{ source('pagila', 'film_category') }}
 ),
 
 deduped as (

@@ -2,7 +2,7 @@
 
 with source as (
     select *
-    from pagila.city
+    from {{ source('pagila', 'city') }}
 ),
 
 deduped as (

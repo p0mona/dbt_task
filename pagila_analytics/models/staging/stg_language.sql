@@ -2,7 +2,7 @@
 
 with source as (
     select *
-    from pagila.language
+    from {{ source('pagila', 'language') }}
 ),
 
 deduped as (

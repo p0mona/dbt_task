@@ -2,7 +2,7 @@
 
 with source as (
     select *
-    from pagila.film_actor
+    from {{ source('pagila', 'film_actor') }}
 )
 
 select 
