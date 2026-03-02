@@ -3,17 +3,91 @@ sources:
     schema: pagila  
     tables:
       - name: actor
+        loaded_at_field: last_update
+        freshness:
+        warn_after: {count: 3, period: day}
+        error_after: {count: 5, period: day}
+
       - name: address
+        loaded_at_field: last_update
+        freshness:
+        warn_after: {count: 3, period: day}
+        error_after: {count: 5, period: day}
+
       - name: category
+        loaded_at_field: last_update
+        freshness:
+        warn_after: {count: 3, period: day}
+        error_after: {count: 5, period: day}
+
       - name: city
+        loaded_at_field: last_update
+        freshness:
+        warn_after: {count: 3, period: day}
+        error_after: {count: 5, period: day}
+
       - name: country
+        loaded_at_field: last_update
+        freshness:
+        warn_after: {count: 3, period: day}
+        error_after: {count: 5, period: day}
+
       - name: customer
+        loaded_at_field: last_update
+        freshness:
+        warn_after: {count: 3, period: day}
+        error_after: {count: 5, period: day}
+        
       - name: film_actor
+        loaded_at_field: last_update
+        freshness:
+        warn_after: {count: 3, period: day}
+        error_after: {count: 5, period: day}
+        
       - name: film_category
+        loaded_at_field: last_update
+        freshness:
+        warn_after: {count: 3, period: day}
+        error_after: {count: 5, period: day}
+        
       - name: film
+        loaded_at_field: last_update
+        freshness:
+        warn_after: {count: 3, period: day}
+        error_after: {count: 5, period: day}
+        
       - name: inventory
+        loaded_at_field: last_update
+        freshness:
+        warn_after: {count: 3, period: day}
+        error_after: {count: 5, period: day}
+        
       - name: language
+        loaded_at_field: last_update
+        freshness:
+        warn_after: {count: 3, period: day}
+        error_after: {count: 5, period: day}
+        
       - name: payment
+        loaded_at_field: payment_date
+        freshness:
+        warn_after: {count: 3, period: day}
+        error_after: {count: 5, period: day}
+        
       - name: rental
+        loaded_at_field: last_update
+        freshness:
+        warn_after: {count: 3, period: day}
+        error_after: {count: 5, period: day}
+        
       - name: staff
+        loaded_at_field: last_update
+        freshness:
+        warn_after: {count: 3, period: day}
+        error_after: {count: 5, period: day}
+        
       - name: store
+        loaded_at_field: last_update
+        freshness:
+        warn_after: {count: 3, period: day}
+        error_after: {count: 5, period: day}
